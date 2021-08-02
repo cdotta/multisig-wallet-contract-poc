@@ -1,4 +1,6 @@
 const path = require('path');
+const Provider = require('@truffle/hdwallet-provider');
+
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -38,6 +40,20 @@ module.exports = {
   contracts_build_directory: path.join(__dirname, '../client/src/contracts'),
 
   networks: {
+    kovan: {
+      provider: () =>
+        new Provider(
+          [
+            'd4b01a447a0f8dd6a952488187169c3d73ea748adb4357eb2f321178787f155e',
+            'c4138fca47750d486a7299ed451039caf74af0023d8940195d110758ab89d5ed',
+            'cea1e9da74a770cb67504ec26789185ee3508b76bbaf1e3e6844028a1f9d5b76',
+          ],
+          'https://kovan.infura.io/v3/3dbaaf35dfbb4aeaa5dfbd90292b0190',
+          0,
+          3,
+        ),
+      network_id: 42,
+    },
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
     // You should run a client (like ganache-cli, geth or parity) in a separate terminal
